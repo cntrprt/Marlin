@@ -43,7 +43,7 @@ Here are some standard links for getting your machine calibrated:
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
 #define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
 #define STRING_SPLASH_LINE1 "v" STRING_VERSION // will be shown during bootup in line 1
-//#define STRING_SPLASH_LINE2 STRING_VERSION_CONFIG_H // will be shown during bootup in line2
+#define STRING_SPLASH_LINE2 STRING_VERSION_CONFIG_H // will be shown during bootup in line2
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -419,20 +419,19 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
     // Use one of these defines to specify the origin
     // for a topographical map to be printed for your bed.
-    enum { OriginBackLeft, OriginFrontLeft, OriginBackRight, OriginFrontRight };
-    #define TOPO_ORIGIN OriginBackRight
+    
 
     // The edges of the rectangle in which to probe
     #define LEFT_PROBE_BED_POSITION 40
-    #define RIGHT_PROBE_BED_POSITION 265
+    #define RIGHT_PROBE_BED_POSITION 250
     #define FRONT_PROBE_BED_POSITION 40
-    #define BACK_PROBE_BED_POSITION 265
+    #define BACK_PROBE_BED_POSITION 250
     
     #define MIN_PROBE_EDGE 10 // The probe square sides can be no smaller than this
 
     // Set the number of grid points per dimension
     // You probably don't need more than 3 (squared=9)
-    #define AUTO_BED_LEVELING_GRID_POINTS 3
+    #define AUTO_BED_LEVELING_GRID_POINTS 2
 
 
   #else  // !AUTO_BED_LEVELING_GRID
@@ -451,8 +450,8 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
   // Offsets to the probe relative to the extruder tip (Hotend - Probe)
   // X and Y offsets must be integers
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -25     // Probe on: -left  +right
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -17     // Probe on: -front +behind
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 25     // Probe on: -left  +right        code is wrong
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -17     // Probe on: -front +behind      code is wrong
   #define Z_PROBE_OFFSET_FROM_EXTRUDER -10.5  // -below (always!)
 
   #define Z_RAISE_BEFORE_HOMING 12       // (in mm) Raise Z before homing (G28) for Probe Clearance.
@@ -462,7 +461,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
   #define Z_RAISE_BEFORE_PROBING 12    //How much the extruder will be raised before traveling to the first probing point.
   #define Z_RAISE_BETWEEN_PROBINGS 5  //How much the extruder will be raised when traveling from between next probing points
-  #define Z_RAISE_AFTER_PROBING 10    //How much the extruder will be raised after the last probing point.
+  #define Z_RAISE_AFTER_PROBING 15    //How much the extruder will be raised after the last probing point.>>>>>>>>>>>>>>>>>>>>>>This is absolute,  The extruder will be raised to this position, not by this much.
 
 //   #define Z_PROBE_END_SCRIPT "G1 Z10 F12000\nG1 X15 Y330\nG1 Z0.5\nG1 Z10" //These commands will be executed in the end of G29 routine.
                                                                             //Useful to retract a deployable probe.
