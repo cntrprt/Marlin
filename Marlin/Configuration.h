@@ -1,4 +1,4 @@
-#ifndef CONFIGURATION_H
+﻿#ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
 #include "boards.h"
@@ -421,11 +421,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
     // for a topographical map to be printed for your bed.
     
 
-    // The edges of the rectangle in which to probe
-    #define LEFT_PROBE_BED_POSITION 40
-    #define RIGHT_PROBE_BED_POSITION 250
-    #define FRONT_PROBE_BED_POSITION 40
-    #define BACK_PROBE_BED_POSITION 250
+ 
+    #define LEFT_PROBE_BED_POSITION 15
+    #define RIGHT_PROBE_BED_POSITION 170
+    #define FRONT_PROBE_BED_POSITION 20
+    #define BACK_PROBE_BED_POSITION 170
     
     #define MIN_PROBE_EDGE 10 // The probe square sides can be no smaller than this
 
