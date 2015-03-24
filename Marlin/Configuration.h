@@ -418,10 +418,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
     
 
  
-    #define LEFT_PROBE_BED_POSITION 15
-    #define RIGHT_PROBE_BED_POSITION 170
-    #define FRONT_PROBE_BED_POSITION 20
-    #define BACK_PROBE_BED_POSITION 170
+    #define LEFT_PROBE_BED_POSITION 40
+    #define RIGHT_PROBE_BED_POSITION 250
+    #define FRONT_PROBE_BED_POSITION 40
+    #define BACK_PROBE_BED_POSITION 250
     
     #define MIN_PROBE_EDGE 10 // The probe square sides can be no smaller than this
 
