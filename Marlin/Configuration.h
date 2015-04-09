@@ -424,7 +424,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 //#define ENDSTOPPULLUP_FIL_RUNOUT // Uncomment to use internal pullup for filament runout pins if the sensor is defined.
 
 //===========================================================================
-//============================ Manual Bed Leveling ==========================
+//============================ Mesh Bed Leveling ============================
 //===========================================================================
 
 // #define MANUAL_BED_LEVELING  // Add display menu option for bed leveling
