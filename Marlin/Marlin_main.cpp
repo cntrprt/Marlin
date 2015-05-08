@@ -4520,7 +4520,7 @@ inline void gcode_M410() { quickStop(); }
       err = true;
     }
 
-    if (!err) mbl.set_z(select_x_index(x), select_y_index(y), z);
+    if (!err) mbl.set_z(mbl.select_x_index(x), mbl.select_y_index(y), z);
   }
 
 #endif
@@ -6213,10 +6213,10 @@ void kill()
   void filrunout() {
     if (!filrunoutEnqueued) {
       filrunoutEnqueued = true;
-      enqueuecommand("M600");
+      enqueuecommands_P(PSTR(FILAMENT_RUNOUT_SCRIPT));
+      st_synchronize();
     }
   }
-
 #endif
 
 void Stop() {
