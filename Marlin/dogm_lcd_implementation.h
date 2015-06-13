@@ -1,4 +1,4 @@
-/**
+﻿/**
  * dogm_lcd_implementation.h
  *
  * Graphics LCD implementation for 128x64 pixel LCDs by STB for ErikZalm/Marlin
@@ -156,15 +156,28 @@ static void lcd_setFont(char font_nr) {
   }
 }
 
-char lcd_print(char c) {
-  if ((c > 0) && (c <= LCD_STR_SPECIAL_MAX)) {
-    u8g.setFont(FONT_SPECIAL_NAME);
-    u8g.print(c);
-    lcd_setFont(currentfont);
-    return 1;
-  } else {
-    return charset_mapper(c);
-  }
+
+	u8g.firstPage();
+	do {
+			// RepRap init bmp
+			u8g.drawBitmapP(0,0,START_BMPBYTEWIDTH,START_BMPHEIGHT,start_bmp);
+			// Welcome message
+			u8g.setFont(u8g_font_6x10_marlin);
+			u8g.drawStr(62,10,"MARLIN"); 
+			u8g.setFont(u8g_font_5x8);
+			u8g.drawStr(62,19,"V1.0.2");
+			u8g.setFont(u8g_font_6x10_marlin);
+			u8g.drawStr(62,28,"by ErikZalm");
+			u8g.drawStr(62,41,"DOGM128 LCD");
+			u8g.setFont(u8g_font_5x8);
+			u8g.drawStr(62,48,"enhancements");
+			u8g.setFont(u8g_font_5x8);
+			u8g.drawStr(62,55,"by STB, MM");
+			u8g.drawStr(62,61,"uses u");
+			u8g.drawStr90(92,57,"8");
+			u8g.drawStr(100,61,"glib");
+	   } while( u8g.nextPage() );
+
 }
 
 char lcd_print(char* str) {
