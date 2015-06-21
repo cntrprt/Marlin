@@ -36,7 +36,6 @@
   #endif
 #endif // ENABLE_AUTO_BED_LEVELING
 
-#define HAS_LCD_BUZZ (defined(ULTRALCD) || (defined(BEEPER) && BEEPER >= 0) || defined(LCD_USE_I2C_BUZZER))
 #define SERVO_LEVELING (defined(ENABLE_AUTO_BED_LEVELING) && PROBE_SERVO_DEACTIVATION_DELAY > 0)
 
 #ifdef MESH_BED_LEVELING
@@ -2662,6 +2661,8 @@ inline void gcode_G28() {
           // If do_topography_map is set then don't zig-zag. Just scan in one direction.
           // This gets the probe points in more readable order.
           if (!do_topography_map) zig = !zig;
+        #else
+          zig = !zig;
         #endif
 
         for (int xCount = xStart; xCount != xStop; xCount += xInc) {
@@ -4326,7 +4327,7 @@ inline void gcode_M226() {
 
 #endif // NUM_SERVOS > 0
 
-#if HAS_LCD_BUZZ
+#if HAS_BUZZER
 
   /**
    * M300: Play beep sound S<frequency Hz> P<duration ms>
@@ -4335,10 +4336,10 @@ inline void gcode_M226() {
     uint16_t beepS = code_seen('S') ? code_value_short() : 110;
     uint32_t beepP = code_seen('P') ? code_value_long() : 1000;
     if (beepP > 5000) beepP = 5000; // limit to 5 seconds
-    lcd_buzz(beepP, beepS);
+    buzz(beepP, beepS);
   }
 
-#endif // HAS_LCD_BUZZ
+#endif // HAS_BUZZER
 
 #ifdef PIDTEMP
 
@@ -4768,7 +4769,7 @@ inline void gcode_M428() {
         SERIAL_ERROR_START;
         SERIAL_ERRORLNPGM(MSG_ERR_M428_TOO_FAR);
         LCD_ALERTMESSAGEPGM("Err: Too far!");
-        #if HAS_LCD_BUZZ
+        #if HAS_BUZZER
           enqueuecommands_P(PSTR("M300 S40 P200"));
         #endif
         err = true;
@@ -4782,7 +4783,7 @@ inline void gcode_M428() {
     memcpy(home_offset, new_offs, sizeof(new_offs));
     sync_plan_position();
     LCD_ALERTMESSAGEPGM("Offset applied.");
-    #if HAS_LCD_BUZZ
+    #if HAS_BUZZER
       enqueuecommands_P(PSTR("M300 S659 P200\nM300 S698 P200"));
     #endif
   }
@@ -5584,11 +5585,11 @@ void process_next_command() {
           break;
       #endif // NUM_SERVOS > 0
 
-      #if HAS_LCD_BUZZ
+      #if HAS_BUZZER
         case 300: // M300 - Play beep tone
           gcode_M300();
           break;
-      #endif // HAS_LCD_BUZZ
+      #endif // HAS_BUZZER
 
       #ifdef PIDTEMP
         case 301: // M301
